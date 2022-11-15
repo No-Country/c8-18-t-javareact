@@ -1,0 +1,14 @@
+# Database
+spring:
+  datasource:
+    url: ${DATABASE_URL:jdbc:mysql://localhost:3306/ecommerce}
+    name: ${DATABASE_NAME:no-country}
+    username: ${DATABASE_USER:root}
+    password: ${DATABASE_PASSWORD:}
+  jpa:
+    database-platform: ${DATABASE_PLATFORM:org.hibernate.dialect.MySQL5InnoDBDialect}
+    show-sql: false
+    defer-datasource-initialization: true
+    hibernate.ddl-auto: create
+  sql:
+    init.mode: always
