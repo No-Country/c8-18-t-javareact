@@ -7,7 +7,7 @@ const Signup = () => {
       <div className='justify-center flex mt-8'>
         <div className="w-full md:max-w-[25rem] max-w-xs">
           <form className="bg-white shadow-3x1 rounded px-8 pt-6 pb-8 mb-4">
-            <h2 className='text-center font-bold text-gray-400 text-2xl pb-5'>Registrase</h2>
+            <h2 className='text-center font-bold text-gray-400 text-2xl pb-5'>Registrarse</h2>
             <div className="mb-8">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
                 Nombres
@@ -30,7 +30,7 @@ const Signup = () => {
             </div>
             <div className="mb-8">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="phone">
-                Telefono
+              Teléfono
               </label>
               <input
                 className={`shadow appearance-none border rounded w-full p-3
@@ -50,7 +50,7 @@ const Signup = () => {
             <button
               className="w-full bg-blue hover:bg-blue-700 text-white font-bold py-2 px-9 rounded focus:outline-none"
               type="button">
-              Registrase
+              Registrarse
             </button>
           </form>
         </div>

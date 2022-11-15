@@ -1,18 +1,22 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
+import ProductsState from './context/productsState';
+
 import { menu } from './utils/menu';
 import _ from 'lodash';
 
 const App = () => {
   return (
-    <Routes>
-      {
-        _.map(menu, (route, i) => (
-          <Route key={i} path={route.path} exact={route.exact} element={<route.element/>}/>
-        ))
-      }
+    <ProductsState>
+      <Routes>
+        {
+          _.map(menu, (route, i) => (
+            <Route key={i} path={route.path} exact={route.exact} element={<route.element/>}/>
+          ))
+        }
 
-    </Routes>
+      </Routes>
+    </ProductsState>
   );
 };
 export default App;
