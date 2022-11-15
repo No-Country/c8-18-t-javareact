@@ -1,0 +1,79 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "node": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "google",
+        "prettier"
+    ],
+    "settings": {
+        "react": {
+          "version": "detect"
+        }
+      },
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+        "react/jsx-uses-react": "error",
+        "react/jsx-uses-vars": "error",
+        "react/react-in-jsx-scope": "off",
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+        "no-unused-vars": 2,
+        "no-console": 0,
+        "no-undef": 0,
+        "semi": [2, "always"],
+        "prefer-const": [2],
+        "space-before-function-paren": [2, {
+            "anonymous": "always",
+            "named": "never",
+            "asyncArrow": "always"
+        }],
+        "comma-dangle": "error",
+        "block-spacing": [2, "always"],
+        "eol-last": "error",
+        "padding-line-between-statements": [
+            2,
+            { "blankLine": "always", "prev": "*", "next": "function" }
+        ],
+        "padded-blocks": [2, {
+            "classes": "always"
+        }],
+        "lines-between-class-members": [2, "always"],
+        "space-before-blocks": [2, "always"],
+        "keyword-spacing": [2],
+        "array-bracket-spacing": [2, "never"],
+        "space-in-parens": [2, "never"],
+        "object-curly-spacing": [2, "always"],
+        "indent": [2, 2, {
+            "SwitchCase": 1,
+            "FunctionDeclaration": { "parameters": "first" },
+            "ObjectExpression": "first"
+        }],
+        "max-len": [2, { "code": 140 }],
+        "no-constant-condition": 0,
+        "comma-spacing": [2, { "after": true }],
+        "no-multiple-empty-lines": [2, {"max": 1}],
+        "quotes": [2, "single"],
+        "key-spacing": [2, {
+        "singleLine": {
+            "beforeColon": false,
+            "afterColon": true
+        }
+        }],
+        "no-cond-assign": [2, "always"],
+        "space-infix-ops": [2, {"int32Hint": true}],
+        "no-unused-expressions": [0]
+
+    }
+}
