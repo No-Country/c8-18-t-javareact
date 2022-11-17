@@ -1,5 +1,6 @@
 package com.nocontry.ecommerce.service.impl;
 
+import com.nocontry.ecommerce.exception.UserAlreadyExistsException;
 import com.nocontry.ecommerce.mapper.IUserMapper;
 import com.nocontry.ecommerce.persistence.model.User;
 import com.nocontry.ecommerce.persistence.repository.UserRepository;
@@ -21,10 +22,12 @@ public class RegisterService implements IRegisterService {
     @Override
     public RegisterResponse createUser(RegisterRequest registerRequest) {
 
+        if (userRepository.findByEmail(registerRequest.getEmail()) != null) {
+            throw new UserAlreadyExistsException(
+                    "Email : " + registerRequest.getEmail() + " Ya esta en uso.");
+        }
         User user = IUserMapper.mapRegisterEntity(registerRequest);
-
         userRepository.save(user);
-
         return IUserMapper.mapRegisterResponseDTO(registerRequest);
     }
 }
