@@ -5,15 +5,15 @@ import com.nocontry.ecommerce.persistence.model.AccountState;
 import com.nocontry.ecommerce.persistence.model.User;
 import com.nocontry.ecommerce.rest.dto.request.RegisterRequest;
 import com.nocontry.ecommerce.rest.dto.response.RegisterResponse;
-import com.nocontry.ecommerce.security.EncryptPassword;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserMapper implements IUserMapper {
 
     @Autowired
-    private EncryptPassword encryptPassword;
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public RegisterResponse mapRegisterResponseDTO(RegisterRequest registerRequest) {
@@ -33,7 +33,7 @@ public class UserMapper implements IUserMapper {
 
         user.setUsername(registerRequest.getUsername());
         user.setEmail(registerRequest.getEmail());
-        user.setPassword(encryptPassword.encryptPassword(registerRequest.getPassword()));
+        user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
         user.setStatus(AccountState.ACTIVE);
 
         return user;
