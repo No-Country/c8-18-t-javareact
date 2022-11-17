@@ -1,6 +1,5 @@
-package com.nocontry.ecommerce.rest.dto;
+package com.nocontry.ecommerce.rest.dto.request;
 
-import com.nocontry.ecommerce.persistence.model.AccountState;
 import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
@@ -11,7 +10,7 @@ import javax.validation.constraints.Size;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegisterDTO {
+public class RegisterRequest {
 
     @NotEmpty
     @Size(min = 4, message = "el nombre debe tener al menos 4 caracteres")

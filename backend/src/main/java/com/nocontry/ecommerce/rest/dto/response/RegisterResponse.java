@@ -1,4 +1,4 @@
-package com.nocontry.ecommerce.rest.dto;
+package com.nocontry.ecommerce.rest.dto.response;
 
 import com.nocontry.ecommerce.persistence.model.AccountState;
 import lombok.*;
@@ -8,7 +8,7 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegisterResponseDTO {
+public class RegisterResponse {
 
     private String username;
     private String email;
