@@ -1,0 +1,13 @@
+{
+  "name": "team-java-react",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Team del cohete 8",
+  "scripts": {
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "husky": "^8.0.2",
+    "lerna": "^6.0.3"
+  }
+}
