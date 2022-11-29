@@ -9,7 +9,6 @@ import javax.persistence.Table;
 @Entity
 @Getter
 @Setter
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "disks")

@@ -3,6 +3,7 @@ package com.nocontry.ecommerce.persistence.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -26,12 +27,14 @@ public class Article {
     private Float price;
 
     @ManyToOne
-    @Column(name = "typeArticle_id", nullable = false)
+    @JoinColumn(name = "typeArticle_id", nullable = false)
     private TypeArticle typeArticleId;
 
     @ManyToMany
-    @Column(name = "generes", nullable = false)
-    private Genere generes;
+    @JoinTable(name = "articles_generes",
+            joinColumns = @JoinColumn(name = "article_id"),
+            inverseJoinColumns = @JoinColumn(name = "genere_id"))
+    private List<Genere> generes;
 
     @Column(name = "stock")
     private Integer stock;
