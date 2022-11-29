@@ -14,6 +14,7 @@ public class ArticleMapper implements IArticleMapper {
                     .id(article.getArticleId())
                     .title(article.getTitle())
                     .price(article.getPrice())
+                    .description(article.getDescription())
                     .stock(article.getStock())
                     .image(article.getImage())
                     .build();
