@@ -53,6 +53,8 @@ public class SecurityConfiguration {
                 .permitAll()
                 .antMatchers(HttpMethod.POST, "/login")
                 .permitAll()
+                .antMatchers(HttpMethod.GET, "/articles")
+                .permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
