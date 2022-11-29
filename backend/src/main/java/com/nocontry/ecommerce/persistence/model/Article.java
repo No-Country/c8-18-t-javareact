@@ -26,6 +26,8 @@ public class Article {
     @Column(name = "price", nullable = false)
     private Float price;
 
+    @Column(name = "description", nullable = false)
+    private String description;
     @ManyToOne
     @JoinColumn(name = "typeArticle_id", nullable = false)
     private TypeArticle typeArticleId;
