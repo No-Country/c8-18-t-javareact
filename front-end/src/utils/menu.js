@@ -1,3 +1,4 @@
+import Category from '../routes/Category/Category';
 import Home from '../routes/Home/Home';
 import NotFound from '../routes/NotFound/NotFound';
 import Login from '../routes/Signin/Signin';
@@ -18,6 +19,12 @@ export const menu = [
     path: '/signup',
     exact: true,
     element: Signup,
+  },
+  {
+    path: '/category',
+    exact: true,
+    element: Category,
+
   },
   {
     path: '*',
