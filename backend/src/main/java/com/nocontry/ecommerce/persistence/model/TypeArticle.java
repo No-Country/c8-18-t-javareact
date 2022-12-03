@@ -18,6 +18,7 @@ public class TypeArticle {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Column(name = "type_article_id")
     private Long typeArticleId;
 
@@ -29,4 +30,6 @@ public class TypeArticle {
 
     @Column(name = "soft_delete", nullable = false)
     private Boolean softDelete;
+
+
 }

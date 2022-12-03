@@ -1,5 +1,6 @@
 package com.nocontry.ecommerce.persistence.model;
 
+
 import lombok.Setter;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +21,6 @@ public class Genere {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "genere_id")
     private Long genereId;
-
     @Column(name = "description", nullable = false)
     private String description;
 }
