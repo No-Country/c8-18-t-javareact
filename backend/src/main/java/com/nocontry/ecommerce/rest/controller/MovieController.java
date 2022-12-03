@@ -15,7 +15,7 @@ public class MovieController {
     @Autowired
     private IMovieService movieService;
 
-    @GetMapping
+    @GetMapping("/movies")
     public ResponseEntity<List<MovieResponse>> getAllMovies(){
         return ResponseEntity.ok(movieService.getAllMovies());
     }
