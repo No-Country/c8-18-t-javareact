@@ -12,6 +12,12 @@ public class BookMapper implements IBookMapper {
     @Override
     public BookResponse toBookResponse(Book book) {
         return BookResponse.builder()
+                .id(book.getArticleId())
+                .title(book.getTitle())
+                .price(book.getPrice())
+                .description(book.getDescription())
+                .stock(book.getStock())
+                .image(book.getImage())
                 .autorName(book.getAutorName())
                 .releaseDate(book.getReleaseDate())
                 .build();
