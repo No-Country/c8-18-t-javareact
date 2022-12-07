@@ -19,8 +19,8 @@
       "type": "uid",
       "targetField": "name"
     },
-    "subcategory": {
-      "model": "subcategory",
+    "subcategories": {
+      "collection": "subcategory",
       "via": "category"
     }
   }
