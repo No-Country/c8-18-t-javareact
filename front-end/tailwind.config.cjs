@@ -8,6 +8,7 @@ module.exports = {
       colors: {
         blue: '#064663',
         nav: '#ECB365',
+        fondo: 'rgba(0, 0, 0, 0.47)',
       },
       fontFamily: {
         'poppins': ['Poppins', 'sans-serif'],
