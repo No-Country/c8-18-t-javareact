@@ -8,14 +8,13 @@ import _ from 'lodash';
 const GET_DETAIL = gql`
 query Orders($key: String) {
   orders (where: {key: $key}) {
-    id
     nombre
     apellido
     direccion
     comentario
-    key
     total
     Producto {
+      id
       img
       name
       price
@@ -33,7 +32,7 @@ const Details = () => {
   if (loading) return <Loading/>;
   if (error) return `Error ! ${error}`;
   const detail = data.orders[0];
-
+  console.log(detail);
   return (
     <Layout>
       <h1 className='font-normal text-center py-8 text-2xl'>
@@ -52,8 +51,8 @@ const Details = () => {
             <li className='py-4 font-semibold'>Comentario: <span className='font-normal'>{detail.comentario}</span></li>
           </ul>
           <h1 className='px-20 text-2xl font-semibold pb-7'>Productos</h1>
-          {_.map(detail.Producto, (p) => (
-            <div key={p.id} className='px-20 grid grid-cols-2'>
+          {_.map(detail.Producto, (p, i) => (
+            <div key={i} className='px-20 grid grid-cols-2'>
               <img src={p.img} alt='' className='w-40 h-40'/>
               <div className='font-medium text-2xl'>
                 <p >{p.name}</p>

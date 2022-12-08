@@ -5,7 +5,6 @@ import { gql, useMutation } from '@apollo/client';
 import { v4 as uuidv4 } from 'uuid';
 import { useFormik } from 'formik';
 import * as  yup from 'yup';
-import Cookies from 'js-cookie';
 
 import ProductsContext from '../context/productsContext';
 import _ from 'lodash';
@@ -66,7 +65,6 @@ const Checkout = ({ setCheckout }) => {
     onSubmit: data => {
       const key = uuidv4();
       localStorage.setItem('key', key);
-      Cookies.set('key', key);
       data.Producto = orders;
       data.total = total;
       data.key = key;
