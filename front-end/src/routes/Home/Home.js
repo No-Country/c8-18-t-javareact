@@ -1,28 +1,68 @@
 import React from 'react';
 import Layout from '../layout';
 import { Carousel } from 'react-responsive-carousel';
+import { gql, useQuery } from '@apollo/client';
+
 import mario from '../../assets/Mario.jpg';
 import pelucila from '../../assets/movie.png';
 import disco from '../../assets/disco.jpg';
 import { AiOutlineStar } from 'react-icons/ai';
 import { FaTruckLoading } from 'react-icons/fa';
+import Loading from '../../components/Loading';
 import { VscDebugStepBack } from 'react-icons/vsc';
 import { RiLockPasswordFill } from 'react-icons/ri';
 import { ImTicket } from 'react-icons/im';
 
+import _ from 'lodash';
+
+const GET_HOME = gql`
+  query Home {
+    subcategories(where: { name: "Promociones" }) {
+      id
+      name
+      image {
+        url
+      }
+      Products {
+        id
+        image {
+          url
+        }
+        price
+      }
+    }
+    categories {
+      name
+      id
+      slug
+    }
+  }
+`;
+
 const Home = () => {
+  const { loading, error, data } = useQuery(GET_HOME);
+  if (loading) return <Loading/>;
+  if (error) return `Error! ${error}`;
+  const promo = data.subcategories[0];
+  // const categories = data.categories;
+  console.log(data);
+
   return (
     <Layout>
       <div>
         <Carousel showThumbs={false} autoPlay={true} infiniteLoop={true} interval={4000} showStatus={false}>
           <div>
-            <img src="https://i.postimg.cc/nzChTD5h/bennerproyect.png" />
+            <img className='w-full md:h-[30rem] h-96 object-cover object-top'
+              src="https://res.cloudinary.com/mavenbox/image/upload/v1670465525/unnamed_ae038918bd.jpg" />
           </div>
           <div>
-            <img src="https://i.postimg.cc/nzChTD5h/bennerproyect.png" />
+            <img className='w-full md:h-[30rem] h-96 object-cover object-top'
+              src="https://res.cloudinary.com/mavenbox/image/upload/v1670457877/1663869098_273384_1663869687_noticia_normal_51d7c5bc41.jpg" 
+            />
           </div>
           <div>
-            <img src="https://i.postimg.cc/nzChTD5h/bennerproyect.png" />
+            <img className='w-full md:h-[30rem] h-96 object-cover object-top'
+              src="https://res.cloudinary.com/mavenbox/image/upload/v1670523515/movie_889db13f11.jpg" />
           </div>
         </Carousel>
         <div className='text-center py-8'>
@@ -30,28 +70,19 @@ const Home = () => {
           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
         </div>
         <div className='grid md:grid-cols-4 grid-cols-1 pt-8 px-8'>
-          <div className='text-center mx-auto'>
-            <img src={mario} alt="" className='w-32 h-32 mx-auto object-cover'/>
-            <h1 className='font-semibold'>Titulo</h1>
-            <div className='flex text-xl py-3 mb-4'>
-              <AiOutlineStar className='text-yellow-500'/>
-              <AiOutlineStar className='text-yellow-500 ml-2'/>
-              <AiOutlineStar className='text-yellow-500 mx-2'/>
-              <AiOutlineStar/>
+          {_.map(promo.Products, (p, i) => (
+            <div key={p.id} className='text-center mx-auto'>
+              <img src={p.image.url} alt="" className='w-32 h-32 mx-auto object-cover'/>
+              <h1 className='font-semibold pt-2'>{p.name}</h1>
+              <div className='flex text-xl py-3 mb-4'>
+                <AiOutlineStar className='text-yellow-500'/>
+                <AiOutlineStar className='text-yellow-500 ml-2'/>
+                <AiOutlineStar className='text-yellow-500 mx-2'/>
+                <AiOutlineStar/>
+              </div>
+              <p className='font-medium'>$ {p.price} <span className='text-gray-600 font-medium ml-3'>$ 30.00</span></p>
             </div>
-            <p className='font-medium'>$ 20.00 <span className='text-gray-600 font-medium ml-3'>$ 30.00</span></p>
-          </div>
-          <div className='text-center mx-auto'>
-            <img src={mario} alt="" className='w-32 h-32 mx-auto object-cover'/>
-            <h1 className='font-semibold'>Titulo</h1>
-            <div className='flex text-xl py-3 mb-4'>
-              <AiOutlineStar className='text-yellow-500'/>
-              <AiOutlineStar className='text-yellow-500 ml-2'/>
-              <AiOutlineStar className='text-yellow-500 mx-2'/>
-              <AiOutlineStar/>
-            </div>
-            <p className='font-medium'>$ 20.00 <span className='text-gray-600 font-medium ml-3'>$ 30.00</span></p>
-          </div>
+          ))}
         </div>
       </div>
       <div className='grid md:grid-cols-2 grid-cols-1'>

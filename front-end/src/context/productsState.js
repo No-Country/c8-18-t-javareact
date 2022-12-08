@@ -9,7 +9,8 @@ import {
   DELETED_SUCCESS,
   TOTAL_SUCCESS,
   MY_ORDEN,
-  SUBTOTAL_SUCCESS } from '../types';
+  SUBTOTAL_SUCCESS,
+  KEY } from '../types';
 
 import PropTypes from 'prop-types';
 
@@ -30,6 +31,12 @@ const ProductsState = (props) => {
     dispatch({
       type: PRODUCT_SELECTED_SUCCESS,
       payload: productos,
+    });
+  };
+  const selectedkey = (key) => {
+    dispatch({
+      type: KEY,
+      payload: key,
     });
   };
 
@@ -67,9 +74,8 @@ const ProductsState = (props) => {
   };
 
   // //Mis pedidios
-  const OrderPlaced = (id) => {
+  const orderPlaced = (id) => {
     Cookies.remove('productos');
-    Cookies.set('orden', key);
     dispatch({
       type: MY_ORDEN,
       payload: id,
@@ -84,14 +90,15 @@ const ProductsState = (props) => {
         total: state.total,
         subTotal: state.subTotal,
         idorder: state.idorder,
-        key_order: state.key_order,
+        key: state.key,
         localStorage: state.localStorage,
         selectedProduct,
         addOrder,
         removeOrder,
         calculateTotal,
         calculateSubTotal,
-        OrderPlaced,
+        orderPlaced,
+        selectedkey,
       }}
     >
       {props.children}

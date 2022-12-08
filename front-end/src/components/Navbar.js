@@ -1,10 +1,24 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { gql, useQuery } from '@apollo/client';
 import { AiOutlineCaretDown } from 'react-icons/ai';
+import Loading from './Loading';
+import _ from 'lodash';
 
 const Navbar = () => {
-
+  const GET_CATEGORIA = gql`
+  query Categoria {
+    categories {
+      name
+      id
+      slug
+    }
+  }
+`;
   const [open, setOpen] = useState(false);
+  const { loading, error, data } = useQuery(GET_CATEGORIA);
+  if (loading) return <Loading/>;
+  if (error) return `Error! ${error}`;
 
   return (
     <nav className='bg-nav'>
@@ -18,10 +32,9 @@ const Navbar = () => {
           {open ? (
             <div className='bg-blue absolute top-8 z-10 right-0 py-2 px-2'>
               <ul className='text-white'>
-                <li className='px-3 py-2 hover:bg-[#167290]'><Link to={'/peli'}>Películas</Link></li>
-                <li className='px-3 py-2 hover:bg-[#167290]'><Link to={'/disco'}>Discos</Link></li>
-                <li className='px-3 py-2 hover:bg-[#167290]'><Link to={'/book'}>Libros</Link></li>
-                <li className='px-3 py-2 hover:bg-[#167290]'><Link to={'/game'}>Videojuegos</Link></li>
+                {_.map(data.categories, (c) => (
+                  <li key={c.id} className='px-3 py-2 hover:bg-[#167290]'><Link to={`/${c.slug}`}>{c.name}</Link></li>
+                ))}
               </ul>
             </div>
           ) : null}

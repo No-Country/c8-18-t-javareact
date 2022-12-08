@@ -4,7 +4,8 @@ import {
   DELETED_SUCCESS,
   TOTAL_SUCCESS,
   MY_ORDEN,
-  SUBTOTAL_SUCCESS } from '../types';
+  SUBTOTAL_SUCCESS,
+  KEY } from '../types';
 
 export default (state, action) => {
   switch (action.type) {
@@ -12,6 +13,11 @@ export default (state, action) => {
       return {
         ...state,
         productos: action.payload,
+      };
+    case KEY:
+      return {
+        ...state,
+        key: action.payload,
       };
     case CONFIRM_PRODUCT_SUCCESS:
       return {
