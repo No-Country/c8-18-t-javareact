@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Layout from '../layout';
 import { Carousel } from 'react-responsive-carousel';
 import { gql, useQuery } from '@apollo/client';
@@ -12,6 +12,7 @@ import Loading from '../../components/Loading';
 import { VscDebugStepBack } from 'react-icons/vsc';
 import { RiLockPasswordFill } from 'react-icons/ri';
 import { ImTicket } from 'react-icons/im';
+import Modal from '../../components/Modal';
 
 import _ from 'lodash';
 
@@ -41,6 +42,8 @@ const GET_HOME = gql`
 
 const Home = () => {
   const { loading, error, data } = useQuery(GET_HOME);
+  const [open, setOpen] = useState(false);
+  const [product, setProduct] = useState(null);
   if (loading) return <Loading/>;
   if (error) return `Error! ${error}`;
   const promo = data.subcategories[0];
@@ -71,7 +74,10 @@ const Home = () => {
         </div>
         <div className='grid md:grid-cols-4 grid-cols-1 pt-8 px-8'>
           {_.map(promo.Products, (p, i) => (
-            <div key={p.id} className='text-center mx-auto'>
+            <div onClick={() => {
+              setOpen(!open);
+              setProduct(p);
+            }} key={p.id} className='text-center mx-auto'>
               <img src={p.image.url} alt="" className='w-32 h-32 mx-auto object-cover'/>
               <h1 className='font-semibold pt-2'>{p.name}</h1>
               <div className='flex text-xl py-3 mb-4'>
@@ -83,6 +89,7 @@ const Home = () => {
               <p className='font-medium'>$ {p.price} <span className='text-gray-600 font-medium ml-3'>$ 30.00</span></p>
             </div>
           ))}
+          {open ? <Modal product={product} setOpen={setOpen}/> : null}
         </div>
       </div>
       <div className='grid md:grid-cols-2 grid-cols-1'>

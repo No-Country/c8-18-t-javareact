@@ -44,15 +44,15 @@ const Details = () => {
         </div>
       ) :
         <div>
-          <ul className='p-20 text-2xl'>
+          <ul className='md:p-20 p-5 text-2xl'>
             <li className='py-4 font-semibold'>Nombre: <span className='font-normal'>{detail.nombre}</span></li>
             <li className='py-4 font-semibold'>Apellido: <span className='font-normal'>{detail.apellido}</span></li>
             <li className='py-4 font-semibold'>Direccióin: <span className='font-normal'>{detail.direccion}</span></li>
             <li className='py-4 font-semibold'>Comentario: <span className='font-normal'>{detail.comentario}</span></li>
           </ul>
-          <h1 className='px-20 text-2xl font-semibold pb-7'>Productos</h1>
+          <h1 className='md:px-20 px-5 text-2xl font-semibold pb-7'>Productos</h1>
           {_.map(detail.Producto, (p, i) => (
-            <div key={i} className='px-20 grid grid-cols-2'>
+            <div key={i} className='md:px-20 px-4 grid grid-cols-2'>
               <img src={p.img} alt='' className='w-40 h-40'/>
               <div className='font-medium text-2xl'>
                 <p >{p.name}</p>
@@ -60,7 +60,7 @@ const Details = () => {
               </div>
             </div>
           ))}
-          <p className='px-20 font-medium text-right text-2xl'>Total a pagar : ${detail.total}</p>
+          <p className='md:px-20 px-4 font-medium md:text-right text-justify pt-2 text-2xl'>Total a pagar : ${detail.total}</p>
         </div>
       }
     </Layout>

@@ -76,7 +76,7 @@ const Checkout = ({ setCheckout }) => {
   return (
     <div className='fixed top-0 w-full bottom-0 bg-fondo left-0 p-20'>
 
-      <div className='bg-white grid grid-cols-2 p-8 overflow-y-scroll h-full relative'>
+      <div className='bg-white grid md:grid-cols-2 grid-cols-1 p-8 overflow-y-scroll h-full relative'>
         <GrFormClose className='absolute right-3 top-3 text-4xl cursor-pointer' onClick={() => {
           setCheckout(false);
           priceTotal();
@@ -95,7 +95,7 @@ const Checkout = ({ setCheckout }) => {
                 {formik.touched.email && formik.errors.email ? (
                   <Notification message={formik.errors.email}/>
                 ) : null }
-                <div className='grid grid-cols-2 my-4'>
+                <div className='grid md:grid-cols-2 grid-cols-1 my-4'>
                   <div className='mr-2'>
                     <label className='text-justify font-semibold'>nombre</label>
                     <input className='w-full px-3 py-2 focus:outline-none rounded-md border border-solid border-[#B58200]'
@@ -153,7 +153,7 @@ const Checkout = ({ setCheckout }) => {
                   className='bg-blue text-white font-semibold w-full py-3 rounded-md mt-8' type='submit'>Comprar</button>
               </form>
             </div>
-            <div className='px-20'>
+            <div className='md:px-20 px-2'>
               <h2 className='text-center font-semibold text-2xl pb-14'>Detalle de la compra</h2>
               {_.map(orders, (ok, i) => (
                 <div key={i} className='grid grid-cols-2 relative'>
