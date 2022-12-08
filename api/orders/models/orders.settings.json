@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "orders",
+  "info": {
+    "name": "Orders"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Nombre": {
+      "type": "string"
+    },
+    "Apellido": {
+      "type": "string"
+    },
+    "comentario": {
+      "type": "richtext"
+    },
+    "total": {
+      "type": "string"
+    },
+    "Producto": {
+      "type": "component",
+      "repeatable": true,
+      "component": "productos.producto"
+    }
+  }
+}

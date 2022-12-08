@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_productos_productos",
+  "info": {
+    "name": "Producto",
+    "icon": "angry"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "img": {
+      "type": "string"
+    }
+  }
+}
