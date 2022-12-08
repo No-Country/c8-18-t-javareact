@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import ProductsContext from '../../context/productsContext';
 import Layout from '../layout';
@@ -6,10 +6,12 @@ import { AiFillDelete } from 'react-icons/ai';
 import shopping from '../../assets/car.svg';
 
 import _ from 'lodash';
+import Checkout from '../../components/Checkout';
 
 const MyCar = () => {
-  // const envio = 1.50;
-  const { orders, productos, subTotal, removeOrder, calculateSubTotal } = useContext(ProductsContext);
+  const envio = 1.50;
+  const { orders, productos, subTotal, removeOrder, calculateSubTotal, calculateTotal } = useContext(ProductsContext);
+  const [checkout, setCheckout] = useState(false);
 
   useEffect(() => {
     priceSubTotal();
@@ -22,13 +24,11 @@ const MyCar = () => {
     calculateSubTotal(newTotal);
   };
 
-  // const priceTotal = () => {
-  //   let newTotal = 0;
-  //   newTotal = orders.reduce((newTotal, pedido) => newTotal + pedido.total + envio, 0);
-  //   calculateTotal(newTotal);
-  // };
-
-  // console.log(subTotal);
+  const priceTotal = () => {
+    let newTotal = 0;
+    newTotal = subTotal + envio;
+    calculateTotal(newTotal);
+  };
 
   return (
     <Layout>
@@ -53,7 +53,7 @@ const MyCar = () => {
                 <img className='w-32 h-32 object-cover' src={o.img} alt=''/>
               </div>
               <div className='mb-10'>
-                <h1 className='py-5 text-lg'>{o.title}</h1>
+                <h1 className='py-5 text-lg'>{o.name}</h1>
               </div>
               <div className='mb-10'>
                 <p className='text-2xl font-normal py-5'>$ {o.price}</p>
@@ -80,12 +80,12 @@ const MyCar = () => {
               </div>
               <div className=''>
                 <div className='grid grid-cols-2'>
-                  <h1 className='text-2xl'>{ok.title}</h1>
-                  <p className='text-2xl font-bold text-end'>$ {ok.total}</p>
+                  <h1 className='text-base'>{ok.name}</h1>
+                  <p className='text-base font-bold text-end'>$ {ok.total}</p>
                 </div>
                 <div className='grid-cols-3 grid pt-12'>
-                  <p className='text-2xl'>$ {ok.price}</p>
-                  <p className='text-2xl font-bold text-center'>{ok.cantidad}</p>
+                  <p className='text-base'>$ {ok.price}</p>
+                  <p className='text-base font-bold text-center'>{ok.cantidad}</p>
                   <p className='flex justify-end'>
                     <AiFillDelete onClick={() => {
                       removeOrder(ok.key);
@@ -106,10 +106,17 @@ const MyCar = () => {
               <h1 className='text-2xl font-semibold mr-36 ml-0 pt-4'>Total</h1>
               <p className='text-2xl font-semibold pt-4'>$ {total.toFixed(2)}</p> */}
             </div>
-            <button className='text-white bg-blue md:px-36  px-0 md:w-auto w-full py-4'>Comprar</button>
+            <button onClick={() => {
+              setCheckout(!checkout);
+              priceTotal();
+            }}
+            className='text-white bg-blue md:px-36  px-0 md:w-auto w-full py-4 font-semibold text-2xl'>Comprar</button>
           </div>
         </div>
       )}
+      {checkout ?
+        <Checkout setCheckout={setCheckout}/> : null
+      }
     </Layout>
   );
 };

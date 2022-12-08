@@ -1,4 +1,5 @@
 import Category from '../routes/Category/Category';
+import Details from '../routes/Details/Details';
 import Home from '../routes/Home/Home';
 import MyCar from '../routes/MyCar/MyCar';
 import NotFound from '../routes/NotFound/NotFound';
@@ -31,6 +32,12 @@ export const menu = [
     path: '/car',
     exact: true,
     element: MyCar,
+
+  },
+  {
+    path: '/details',
+    exact: true,
+    element: Details,
 
   },
   {

@@ -6,12 +6,14 @@ import ProductsContext from '../context/productsContext';
 
 import PropTypes from 'prop-types';
 
-const Modal = ({ setOpen, product }) => {
+const Modal = ({ setOpen, product, setCar }) => {
 
-  const { title, price, description, img, id } = product;
+  const { name, price, description, image } = product;
+  const img = image.url;
   const { addOrder } = useContext(ProductsContext);
   const [cantidad, setCantidad] = useState(1);
   const [total, setTotal] = useState(0);
+
   useEffect(() => {
     calculateQuantity();
   }, [cantidad]);
@@ -39,8 +41,7 @@ const Modal = ({ setOpen, product }) => {
     let Pedido = null;
     if (product) {
       Pedido = {
-        title,
-        id,
+        name,
         price,
         description,
         img,
@@ -52,16 +53,17 @@ const Modal = ({ setOpen, product }) => {
     }
     addOrder(Pedido);
     setOpen(false);
+    setCar(true);
   };
   return (
-    <div className='fixed top-0 w-full bottom-0 bg-fondo left-0 md:px-56 px-3 md:py-32 py-3'>
-      <div className='bg-white grid md:grid-cols-2 grid-cols-1 relative md:overflow-hidden overflow-scroll md:h-auto h-full md:py-0 py-8'>
+    <div className='fixed top-0 w-full bottom-0 bg-fondo left-0 md:px-56 px-3 md:py-20 py-3'>
+      <div className='bg-white grid md:grid-cols-2 grid-cols-1 relative md:overflow-auto overflow-scroll md:h-[30rem] h-full md:py-0 py-8'>
         <GrFormClose className='absolute right-3 top-3 text-4xl cursor-pointer' onClick={() => setOpen(false)}/>
         <div className='p-16'>
           <img className='object-cover h-80 w-full' src={img} alt=''/>
         </div>
-        <div className='p-9 pt-16'>
-          <h1 className='text-2xl font-medium'>{title}</h1>
+        <div className='p-9 pt-16 md:pb-20 pb-2'>
+          <h1 className='text-2xl font-medium'>{name}</h1>
           <p className='text-3xl font-semibold py-8'>$ {price}</p>
           <p className='text-lg font-normal text-justify pb-10'>{description}</p>
           <div className='grid grid-cols-2 relative top-10'>
@@ -78,8 +80,8 @@ const Modal = ({ setOpen, product }) => {
                 <MdAdd/>
               </button>
             </div>
-            <button onClick={addProduct}
-              className='w-full bg-blue text-white font-semibold py-2'>
+            <button onClick={addProduct} disabled={price ? false : true}
+              className={`w-full font-semibold py-2 ${price ? 'bg-blue text-white' : 'bg-white text-black'}`}>
                 Agregar Al Carrito
             </button>
           </div>
@@ -92,6 +94,7 @@ const Modal = ({ setOpen, product }) => {
 Modal.propTypes = {
   setOpen: PropTypes.func,
   product: PropTypes.object,
+  setCar: PropTypes.func,
 };
 
 export default Modal;
