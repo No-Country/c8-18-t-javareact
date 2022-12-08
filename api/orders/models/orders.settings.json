@@ -37,6 +37,9 @@
     },
     "total": {
       "type": "decimal"
+    },
+    "direccion": {
+      "type": "string"
     }
   }
 }

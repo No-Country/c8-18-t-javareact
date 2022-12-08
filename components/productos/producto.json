@@ -2,14 +2,12 @@
   "collectionName": "components_productos_productos",
   "info": {
     "name": "Producto",
-    "icon": "angry"
+    "icon": "angry",
+    "description": ""
   },
   "options": {},
   "attributes": {
-    "title": {
-      "type": "string"
-    },
-    "slug": {
+    "name": {
       "type": "string"
     },
     "price": {
@@ -19,6 +17,15 @@
       "type": "richtext"
     },
     "img": {
+      "type": "string"
+    },
+    "total": {
+      "type": "decimal"
+    },
+    "cantidad": {
+      "type": "integer"
+    },
+    "key": {
       "type": "string"
     }
   }
